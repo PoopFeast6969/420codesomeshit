@@ -12,10 +12,14 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 #Gameplay Variables
-DIRECTION = 'none'
-
+DIRECTION = 'right'
 rx = 0
 ry = 0
+
+#Sprites and Visual Elements
+dogImg = pygame.image.load('sprite_dog.png')
+dogImg.set_clip(pygame.Rect(0,0,60,60))
+drawing = dogImg.subsurface(dogImg.get_clip())
 
 #Game Loop
 while True:
@@ -26,12 +30,11 @@ while True:
                 sys.exit()
             if event.key == K_w:
                 DIRECTION = 'up'
+                ry = ry - 5
             elif event.key == K_s:
                 DIRECTION = 'down'
-        if DIRECTION == 'up':
-            ry -= 5
-        if DIRECTION == 'down':
-            ry += 5
+                ry = ry + 5
     displaysurf.fill(WHITE)
-    pygame.draw.rect(displaysurf, BLACK, (rx,ry,100,50))
+    displaysurf.blit(drawing, (rx, ry))
+    #pygame.draw.rect(displaysurf, BLACK, (rx,ry,100,50))
     pygame.display.update()
