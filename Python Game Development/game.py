@@ -15,11 +15,14 @@ BLACK = (0, 0, 0)
 DIRECTION = 'right'
 rx = 0
 ry = 0
+animationcounter = 0
 
 #Sprites and Visual Elements
 dogImg = pygame.image.load('sprite_dog.png')
-dogImg.set_clip(pygame.Rect(0,0,60,60))
-drawing = dogImg.subsurface(dogImg.get_clip())
+#dogImg.set_clip(pygame.Rect(0,0,60,60))
+#frame1 = dogImg.subsurface(dogImg.get_clip())
+dogImg.set_clip(pygame.Rect(160,0,80,80))
+frame2 = dogImg.subsurface(dogImg.get_clip())
 
 #Game Loop
 while True:
@@ -35,6 +38,9 @@ while True:
                 DIRECTION = 'down'
                 ry = ry + 5
     displaysurf.fill(WHITE)
-    displaysurf.blit(drawing, (rx, ry))
+    if animationcounter > 30:
+        animationrcounter = 0
+    animationcounter += 1
+    displaysurf.blit(frame2, (rx, ry))
     #pygame.draw.rect(displaysurf, BLACK, (rx,ry,100,50))
     pygame.display.update()
